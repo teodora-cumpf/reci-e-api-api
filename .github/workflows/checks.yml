@@ -19,6 +19,3 @@ jobs:
         run: docker-compose run --rm app sh -c "python manage.py test"
       - name: Lint
         run: docker-compose run --rm app sh -c "flake8"
-      - name: Check on failures
-        if: (${{ success() }} || ${{ failure() }}) && (${{ steps.hello.outcome }} == 'failure' || ${{ steps.world.outcome }} == 'failure')
-        run: exit 1
