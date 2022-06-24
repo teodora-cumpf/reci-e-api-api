@@ -1,7 +1,7 @@
 """
 Test for the user API.
 """
-import email
+
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 from django.urls import reverse
@@ -24,12 +24,12 @@ class PublicUserApiTests(TestCase):
     def setUp(self):
         self.client = APIClient()
 
-    def test_create_user_succes(self):
+    def test_create_user_success(self):
         """Test creating user is success"""
         payload = {
-            'email': "test@example.com",
-            'password': "testpass123",
-            'name': "Test Name",
+            'email': 'test@example.com',
+            'password': 'testpass123',
+            'name': 'Test Name',
         }
         res = self.client.post(CREATE_USER_URL, payload)
 
