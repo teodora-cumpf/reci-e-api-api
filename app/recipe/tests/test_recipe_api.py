@@ -25,7 +25,7 @@ def create_recipe(user, **params):
         'time_minutes': 22,
         'price': Decimal('5.25'),
         'description': 'Sample description',
-        'link': 'http://example.com/recipe.pdf'
+        'link': 'http://example.com/recipe.pdf',
     }
     defaults.update(params)
 
@@ -57,7 +57,7 @@ class PrivateRecipeApiTests(TestCase):
         )
         self.client.force_authenticate(self.user)
 
-    def test_retrive_recipes(self):
+    def test_retrieve_recipes(self):
         """Test retrieving a olist of recipes."""
         create_recipe(user=self.user)
         create_recipe(user=self.user)
@@ -73,9 +73,9 @@ class PrivateRecipeApiTests(TestCase):
         """Test list of recipes is limited to authenticated user."""
         other_user = get_user_model().objects.create_user(
             'other@example.com',
-            'password123'
+            'password123',
         )
-        create_recipe(user=other.user)
+        create_recipe(user=other_user)
         create_recipe(user=self.user)
 
         res = self.client.get(RECIPES_URL)

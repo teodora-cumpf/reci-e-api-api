@@ -9,7 +9,7 @@ from core.models import Recipe
 from recipe import serializers
 
 
-class RecipeViewSets(viewsets.ModelViewSet):
+class RecipeViewSet(viewsets.ModelViewSet):
     """View for manage recipe APIs."""
     serializer_class = serializers.RecipeSerializer
     queryset = Recipe.objects.all()
@@ -18,4 +18,4 @@ class RecipeViewSets(viewsets.ModelViewSet):
 
     def get_queryset(self):
         """Retrive recipes for authenticated user."""
-        return self.queryset.fiter(user=self.request.user).order_by('-id')
+        return self.queryset.filter(user=self.request.user).order_by('-id')
