@@ -2,7 +2,6 @@
 Tests for recipe APIs.
 """
 from decimal import Decimal
-import email
 
 from django.contrib.auth import get_user_model
 from django.test import TestCase
@@ -92,7 +91,6 @@ class PrivateRecipeApiTests(TestCase):
         serializer = RecipeSerializer(recipes, many=True)
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data, serializer.data)
-
 
     def test_get_recipe_detail(self):
         """Test get recipe detail."""
@@ -185,7 +183,7 @@ class PrivateRecipeApiTests(TestCase):
         self.assertEqual(res.status_code, status.HTTP_204_NO_CONTENT)
         self.assertFalse(Recipe.objects.filter(id=recipe.id).exists())
 
-    def test_delete_other_users_recipe_error(self):
+    def test_recipe_other_users_recipe_error(self):
         """Test trying to delete another users recipe gives error."""
         new_user = create_user(email='user2@example.com', password='test123')
         recipe = create_recipe(user=new_user)
