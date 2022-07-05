@@ -1,8 +1,6 @@
 """
 Serializers for recipe APIs
 """
-from typing_extensions import Required
-from pkg_resources import require
 from rest_framework import serializers
 
 from core.models import (
