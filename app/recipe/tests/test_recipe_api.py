@@ -360,7 +360,7 @@ class PrivateRecipeApiTests(TestCase):
     def test_clear_recipe_ingredients(self):
         """Test clearing a recipes ingredients."""
 
-        ingredient = Ingredient.objects.create(user=self, name='Garlic')
+        ingredient = Ingredient.objects.create(user=self.user, name='Garlic')
         recipe = create_recipe(user=self.user)
         recipe.ingredients.add(ingredient)
 
