@@ -14,6 +14,7 @@ from core.models import (
     Tag,
     Recipe,
 )
+
 from recipe.serializers import TagSerializer
 
 
@@ -132,7 +133,7 @@ class PrivateTagsApiTests(TestCase):
             title='Porridge',
             time_minutes=3,
             price=Decimal('2.00'),
-            user=self.user
+            user=self.user,
         )
         recipe1.tags.add(tag)
         recipe2.tags.add(tag)

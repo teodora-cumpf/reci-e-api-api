@@ -52,7 +52,7 @@ class PrivateIngredientsApiTests(TestCase):
         self.client = APIClient()
         self.client.force_authenticate(self.user)
 
-    def test_retrive_ingredients(self):
+    def test_retrieve_ingredients(self):
         """Test retrieving a list of ingredients."""
         Ingredient.objects.create(user=self.user, name='Kale')
         Ingredient.objects.create(user=self.user, name='Vanilla')
@@ -127,13 +127,13 @@ class PrivateIngredientsApiTests(TestCase):
             title='Eggs Benedict',
             time_minutes=60,
             price=Decimal('7.00'),
-            user=self.user
+            user=self.user,
         )
         recipe2 = Recipe.objects.create(
             title='Eggs Herb',
             time_minutes=20,
             price=Decimal('4.00'),
-            user=self.user
+            user=self.user,
         )
         recipe1.ingredients.add(ing)
         recipe2.ingredients.add(ing)
@@ -141,4 +141,3 @@ class PrivateIngredientsApiTests(TestCase):
         res = self.client.get(INGREDIENTS_URL, {'assigned_only': 1})
 
         self.assertEqual(len(res.data), 1)
-)

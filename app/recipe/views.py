@@ -22,7 +22,9 @@ from core.models import (
     Tag,
     Ingredient,
 )
+
 from recipe import serializers
+
 
 @extend_schema_view(
     list=extend_schema(
@@ -36,7 +38,7 @@ from recipe import serializers
                 'ingredients',
                 OpenApiTypes.STR,
                 description='Coma separated list of ingredients IDs to filter',
-            )
+            ),
         ]
     )
 )
@@ -100,7 +102,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
                 'assigned_only',
                 OpenApiTypes.INT, enum=[0, 1],
                 description='Filter bu items assigned to recipes'
-            )
+            ),
         ]
     )
 )
@@ -136,5 +138,3 @@ class IngredientViewSet(BaseRecipeAttrViewSet):
     """Manage ingredients in the database"""
     serializer_class = serializers.IngredientSerializer
     queryset = Ingredient.objects.all()
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
