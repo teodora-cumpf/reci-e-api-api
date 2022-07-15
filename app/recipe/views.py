@@ -42,7 +42,6 @@ from recipe import serializers
         ]
     )
 )
-
 class RecipeViewSet(viewsets.ModelViewSet):
     """View for manage recipe APIs."""
     serializer_class = serializers.RecipeDetailSerializer
@@ -94,6 +93,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
             return Response(serializer.data, status=status.HTTP_200_OK)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 @extend_schema_view(
     list=extend_schema(
